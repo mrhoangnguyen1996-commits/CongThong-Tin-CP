@@ -58,7 +58,7 @@
 
         <div class="bg-amber-500 text-black font-bold text-sm py-2 flex items-center">
             <div class="bg-red-600 text-white px-4 py-1 flex items-center gap-2 uppercase tracking-wider text-xs font-black shrink-0 h-full">Hỏa tốc khẩn sắc</div>
-            <div class="marquee-container w-full"><span id="web-marquee" class="marquee-text px-4">[🔥 ĐÀM THOẠI 2 CHIỀU]: Khối văn phòng chính phủ trực tuyến đã kết nối cơ sở dữ liệu tập trung...</span></div>
+            <div class="marquee-container w-full"><span id="web-marquee" class="marquee-text px-4">[🔥 ĐÀM THOẠI 2 CHIỀU]: Khối văn phòng số chính phủ trực tuyến liên thông đa ban ngành dập tuyến khẩn cấp...</span></div>
         </div>
 
         <nav class="bg-[#0e1726] border-b border-gray-800">
@@ -119,13 +119,12 @@
                             <input type="text" id="form-sender" placeholder="Ví dụ: Nguyen_Manh_Hoang" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white font-mono">
                         </div>
                         <div>
-                            <label class="block text-gray-400 mb-1">Thể loại dịch vụ chủ quản</label>
+                            <label class="block text-gray-400 mb-1">Thể loại cơ quan</label>
                             <select id="form-dept" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white">
-                                <option value="CÔNG AN">CÔNG AN - Đăng ký Thẻ Căn Cước Gắn Chíp</option>
-                                <option value="CÔNG AN">CÔNG AN - Cấp phép sở hữu vũ khí quân dụng</option>
-                                <option value="QUÂN SỰ">QUÂN SỰ - Đăng ký tham gia Nghĩa vụ quân sự tự nguyện</option>
-                                <option value="TÒA ÁN">TÒA ÁN - Đơn khởi kiện dân sự / Hình sự toàn quốc</option>
-                                <option value="KHO BẠC">KHO BẠC - Giao dịch ngân sách / Rút nộp tiền tệ quốc gia</option>
+                                <option value="CÔNG AN">CÔNG AN - Đăng ký Thẻ Căn Cước / Cấp phép vũ khí</option>
+                                <option value="QUÂN SỰ">QUÂN SỰ - Hoãn nghĩa vụ / Đăng ký nhập ngũ</option>
+                                <option value="TÒA ÁN">TÒA ÁN - Đơn khiếu nại khởi tố hình sự dân sự</option>
+                                <option value="KHO BẠC">KHO BẠC - Lưu chuyển ngân sách / Rút tiền tệ</option>
                             </select>
                         </div>
                         <div>
@@ -278,7 +277,7 @@
     </div>
 
     <footer class="bg-[#090d16] border-t border-gray-800 py-4 text-center text-xs text-gray-500">
-        <p>© 2026 CỔNG THÔNG TIN ĐIỆN TỬ CHÍNH PHỦ GIẢ LẬP - WEB SERVICE SYSTEM</p>
+        <p>© 2026 CỔNG THÔNG TIN ĐIỆN TỬ CHÍNH PHỦ GIẢ LẬP - WEB SERVICE CORE</p>
     </footer>
 
     <script>
@@ -581,7 +580,7 @@
         async function executePublish() {
             const type = document.querySelector('input[name="publish-type"]:checked').value;
             const now = new Date();
-            const timeStr = String(now.getHours()).padStart(2, '0') + ":15 15/6/2026";
+            const timeStr = String(now.getHours()).padStart(2, '0') + ":" + String(now.getMinutes()).padStart(2, '0') + " 15/6/2026";
             let payload = {};
             if(type === 'news') {
                 payload = { id: 'N'+Date.now(), type: document.getElementById('news-type').value, title: document.getElementById('news-title').value.trim(), content: document.getElementById('news-content').value.trim(), time: timeStr };
