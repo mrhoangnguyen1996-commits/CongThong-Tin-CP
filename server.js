@@ -4,10 +4,10 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// ================= HỆ THỐNG CƠ SỞ DỮ LIỆU TẬP TRUNG TRÊN SERVER =================
+// ================= HỆ THỐNG CƠ SỞ DỮ LIỆU TRÊN RAM SERVER =================
 let db = {
     news: [
-        { id: 'N1', type: 'QUYẾT ĐỊNH', title: 'Chính thức vận hành Cổng thông tin điện tử hành chính liên thông', content: 'Ban hành quy chế phối hợp liên ngành số hóa quốc gia diện Web Service Fullstack.', time: '15/06/2026, 08:00:00' }
+        { id: 'N1', type: 'QUYẾT ĐỊNH', title: 'Chính thức vận hành Cổng thông tin điện tử hành chính liên thông', content: 'Ban hành quy chế phối hợp liên ngành số hóa quốc gia diện Web Service tập trung.', time: '15/06/2026, 08:00:00' }
     ],
     warrants: [
         { id: 'W1', name: 'Robber_Pro', crime: 'Cướp ngân hàng trung ương, có vũ khí nguy hiểm', bounty: '50,000$', time: '15/06/2026' }
@@ -16,17 +16,16 @@ let db = {
         'Nguyen_Manh_Hoang': { name: 'Nguyen_Manh_Hoang', idCard: 'CCCD-2026', job: 'Đại tá Cục trưởng Cục An Ninh', status: 'Diện Cư Dân Hợp Pháp', record: 'Không tiền án tiền sự', military: 'Sĩ quan chuyên nghiệp', money: '1,500,000,000$', license: 'A1, A2, B2', weaponPermit: 'Đặc quyền tối cao' }
     ],
     documents: [
-        { id: 'HS-9999', sender: 'Nguyen_Manh_Hoang', dept: 'CÔNG AN', content: 'Yêu cầu thẩm định cấp phát công cụ hỗ trợ đặc chủng tuần tra ban đêm.', status: 'Chờ thẩm xét', time: '15/06/2026, 08:10:00', replies: [{author: 'Hệ thống', role: 'Hệ thống', text: 'Hồ sơ đã khởi tạo thành công trên cụm máy chủ Render.'}], escalationStage: 'Bộ phận tiếp nhận', satisfaction: 'Chưa đánh giá' }
+        { id: 'HS-9999', sender: 'Nguyen_Manh_Hoang', dept: 'CÔNG AN', content: 'Yêu cầu thẩm định cấp phát công cụ hỗ trợ đặc chủng tuần tra ban đêm.', status: 'Chờ thẩm xét', time: '15/06/2026, 08:10:00', replies: [{author: 'Hệ thống', role: 'Hệ thống', text: 'Hồ sơ đã khởi tạo thành công trên cụm máy chủ Render Web Service.'}], escalationStage: 'Bộ phận tiếp nhận', satisfaction: 'Chưa đánh giá' }
     ],
     accounts: {
-        'admin': { username: 'admin', password: '123', realname: 'Đại tá Nguyễn Mạnh Hoàng', dept: 'QUẢN TRỊ', level: 'Lãnh đạo', statReceived: 2, statProcessed: 1, actionHistory: ['[15/06/2026, 08:00:00] Khởi tạo máy chủ cơ yếu tối cao.'] },
-        'trucban_ca': { username: 'trucban_ca', password: '123', realname: 'Trung úy Trần Văn B', dept: 'CÔNG AN', level: 'Trực ban', statReceived: 5, statProcessed: 3, actionHistory: ['[15/06/2026, 08:15:00] Tiếp nhận ca trực ban tư pháp phòng làm việc Công An.'] }
+        'admin': { username: 'admin', password: '123', realname: 'Đại tá Nguyễn Mạnh Hoàng', dept: 'QUẢN TRỊ', level: 'Lãnh đạo', statReceived: 1, statProcessed: 1, actionHistory: ['[15/06/2026, 08:00:00] Khởi tạo hệ thống quản trị tối cao hành chính liên thông.'] }
     },
-    logs: ['[15/06/2026, 08:00:00] KHỞI TẠO MÁY CHỦ: Kích hoạt cấu trúc đàm thoại 2 chiều và mô-đun phân tích dữ liệu Chart.js.'],
+    logs: ['[15/06/2026, 08:00:00] KHỞI TẠO MÁY CHỦ: Đồng bộ luồng đàm thoại 2 chiều và mô-đun kết xuất đồ họa Chart.js.'],
     securityStatus: 'SAFE'
 };
 
-// ================= CÁC API ENDPOINTS (BACKEND LOGIC) =================
+// ================= CÁC API ENDPOINTS NGHIỆP VỤ =================
 app.get('/api/db', (req, res) => res.json(db));
 
 app.post('/api/login', (req, res) => {
@@ -34,12 +33,12 @@ app.post('/api/login', (req, res) => {
     if (db.accounts[username] && db.accounts[username].password === password) {
         return res.json({ success: true, user: db.accounts[username] });
     }
-    res.json({ success: false, message: 'Sai tài khoản hoặc mật mã bảo mật!' });
+    res.json({ success: false, message: 'Thông tin xác thực cơ yếu không chính xác!' });
 });
 
 app.post('/api/public-form', (req, res) => {
     const { sender, dept, content, time, id } = req.body;
-    const newDoc = { id, sender, dept, content, status: 'Chờ thẩm xét', time, replies: [], escalationStage: 'Bộ phận tiếp nhận', satisfaction: 'Chưa đánh giá' };
+    const newDoc = { id, sender, dept, content, status: 'Chờ thẩm xét', time, replies: [{author: 'Hệ thống', role: 'Hệ thống', text: 'Hồ sơ đã được đẩy lên hàng đợi xét duyệt.'}], escalationStage: 'Bộ phận tiếp nhận', satisfaction: 'Chưa đánh giá' };
     db.documents.unshift(newDoc);
     db.logs.unshift(`[${time}] Công dân @${sender} nộp đơn hồ sơ trực tuyến mới mã: ${id}`);
     res.json({ success: true });
@@ -53,8 +52,7 @@ app.post('/api/document/action', (req, res) => {
         if (db.accounts[username]) {
             if (status === 'Đã tiếp nhận') db.accounts[username].statReceived = (db.accounts[username].statReceived || 0) + 1;
             else db.accounts[username].statProcessed = (db.accounts[username].statProcessed || 0) + 1;
-            
-            db.accounts[username].actionHistory.unshift(`[15/06/2026] Đã cập nhật trạng thái hồ sơ ${id} thành [${status}]`);
+            db.accounts[username].actionHistory.unshift(`[15/06/2026] Cập nhật tiến độ hồ sơ ${id} sang trạng thái: ${status}`);
         }
         db.logs.unshift(`[15/06/2026] Cán bộ @${username} cập nhật đơn thư ${id} thành: [${status}]`);
         return res.json({ success: true });
@@ -62,16 +60,15 @@ app.post('/api/document/action', (req, res) => {
     res.json({ success: false });
 });
 
-// ĐỒNG BỘ ĐÀM THOẠI 2 CHIỀU ĐÃ ĐƯỢC VÁ LỖI TOÀN DIỆN
 app.post('/api/document/reply', (req, res) => {
     const { id, author, role, text, username } = req.body;
     let doc = db.documents.find(d => d.id === id);
     if (doc) {
         doc.replies.push({ author, role, text });
         if (username && db.accounts[username]) {
-            db.accounts[username].actionHistory.unshift(`[15/06/2026] Gửi đàm thoại tới hồ sơ ${id}: "${text}"`);
+            db.accounts[username].actionHistory.unshift(`[15/06/2026] Phát tin nhắn đàm thoại vào hồ sơ ${id}: "${text}"`);
         }
-        db.logs.unshift(`[15/06/2026] Phản hồi đàm thoại tại hồ sơ số ${id} bởi ${author}`);
+        db.logs.unshift(`[15/06/2026] Ghi nhận đàm thoại mới tại hồ sơ ${id} bởi ${author}`);
         return res.json({ success: true });
     }
     res.json({ success: false });
@@ -85,9 +82,9 @@ app.post('/api/document/transfer', (req, res) => {
         doc.dept = targetDept;
         doc.status = `Đã điều chuyển từ [${oldDept}]`;
         if (db.accounts[username]) {
-            db.accounts[username].actionHistory.unshift(`[15/06/2026] Điều chuyển hồ sơ ${id} từ [${oldDept}] sang [${targetDept}]`);
+            db.accounts[username].actionHistory.unshift(`[15/06/2026] Điều chuyển đơn thư ${id} sang đơn vị [${targetDept}]`);
         }
-        db.logs.unshift(`[15/06/2026] Cán bộ @${username} điều chuyển hồ sơ ${id} từ [${oldDept}] sang [${targetDept}]`);
+        db.logs.unshift(`[15/06/2026] Cán bộ @${username} điều chuyển đơn thư ${id} sang phối hợp liên phòng [${targetDept}]`);
         return res.json({ success: true });
     }
     res.json({ success: false });
@@ -99,9 +96,9 @@ app.post('/api/document/escalate', (req, res) => {
     if (doc) {
         doc.escalationStage = nextStage;
         if (db.accounts[username]) {
-            db.accounts[username].actionHistory.unshift(`[15/06/2026] Trình chuyển tiếp tuyến hành chính hồ sơ ${id} lên [${nextStage}]`);
+            db.accounts[username].actionHistory.unshift(`[15/06/2026] Trình chuyển tiếp tuyến hành chính đơn ${id} lên cấp [${nextStage}]`);
         }
-        db.logs.unshift(`[15/06/2026] Hồ sơ ${id} được trình duyệt lên: [${nextStage}]`);
+        db.logs.unshift(`[15/06/2026] Tuyến hành chính hồ sơ ${id} được chuyển cấp lên: [${nextStage}]`);
         return res.json({ success: true });
     }
     res.json({ success: false });
@@ -116,7 +113,7 @@ app.post('/api/document/evaluate', (req, res) => {
             doc.status = 'Khiếu nại Khẩn cấp';
             doc.escalationStage = 'Cấp thanh tra chính phủ giám sát';
         }
-        db.logs.unshift(`[15/06/2026] Hồ sơ ${id} nhận đánh giá: [${result}]`);
+        db.logs.unshift(`[15/06/2026] Hồ sơ ${id} nhận được đánh giá dân sự: [${result}]`);
         return res.json({ success: true });
     }
     res.json({ success: false });
@@ -127,9 +124,9 @@ app.post('/api/publish', (req, res) => {
     if (type === 'news') db.news.unshift(data);
     else db.warrants.unshift(data);
     if (db.accounts[username]) {
-        db.accounts[username].actionHistory.unshift(`[15/06/2026] Phát hành sắc lệnh/chỉ thị mới lên trang chủ.`);
+        db.accounts[username].actionHistory.unshift(`[15/06/2026] Khắc bản chỉ thị ký duyệt văn bản quốc gia sắc lệnh mới.`);
     }
-    db.logs.unshift(`[15/06/2026] Sắc lệnh chỉ thị mới đã được ban hành.`);
+    db.logs.unshift(`[15/06/2026] Văn phòng lãnh đạo ban hành văn bản quy sắc pháp lý mới.`);
     res.json({ success: true });
 });
 
@@ -137,28 +134,27 @@ app.post('/api/sync-id', (req, res) => {
     const { name, citizenData, username } = req.body;
     db.citizens[name] = citizenData;
     if (db.accounts[username]) {
-        db.accounts[username].actionHistory.unshift(`[15/06/2026] Đồng bộ hồ sơ tư pháp dân cư: ${name}`);
+        db.accounts[username].actionHistory.unshift(`[15/06/2026] Đồng bộ cập nhật cơ sở dữ liệu CCCD cư dân: ${name}`);
     }
-    db.logs.unshift(`[15/06/2026] Cập nhật dữ liệu số hóa căn cước công dân: ${name}`);
+    db.logs.unshift(`[15/06/2026] Đồng bộ số hóa hệ thống thông tin cư dân quốc gia: ${name}`);
     res.json({ success: true });
 });
 
 app.post('/api/account/create', (req, res) => {
     const { username, accountData } = req.body;
     db.accounts[username] = accountData;
-    db.logs.unshift(`[15/06/2026] Cấp phát tài khoản cán bộ mới: @${username}`);
+    db.logs.unshift(`[15/06/2026] Cấp phát quyền trích xuất & tạo tài khoản cán bộ mới: @${username}`);
     res.json({ success: true });
 });
 
 app.post('/api/security/update', (req, res) => {
     db.securityStatus = req.body.status;
-    db.logs.unshift(`[15/06/2026] Thay đổi mức độ an ninh quốc gia sang trạng thái: [${req.body.status}]`);
+    db.logs.unshift(`[15/06/2026] Lãnh đạo tối cao ban sắc thay đổi tình trạng an ninh sang mức: [${req.body.status}]`);
     res.json({ success: true });
 });
 
-// ================= FRONTEND INTERFACE (HTML/JS) =================
-app.get('/', (req, res) => {
-    res.send(`
+// ================= GIAO DIỆN NGƯỜI DÙNG CHUẨN ĐỒ HỌA =================
+const htmlContent = `
 <!DOCTYPE html>
 <html lang="vi" class="dark">
 <head>
@@ -168,12 +164,6 @@ app.get('/', (req, res) => {
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: { extend: { colors: { darkBg: '#0b111e', darkCard: '#111827', govGold: '#f59e0b', govRed: '#ef4444', govGreen: '#10b981', govBlue: '#3b82f6', govPurple: '#a855f7' } } }
-        }
-    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #0b111e; color: #e5e7eb; }
@@ -189,13 +179,10 @@ app.get('/', (req, res) => {
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between">
-
     <header class="bg-[#090d16] border-b border-gray-800 shadow-xl">
         <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-4">
-                <div class="bg-amber-500/10 p-3 rounded-lg border border-amber-500/30">
-                    <i class="fa-solid fa-landmark text-3xl text-amber-500"></i>
-                </div>
+                <div class="bg-amber-500/10 p-3 rounded-lg border border-amber-500/30"><i class="fa-solid fa-landmark text-3xl text-amber-500"></i></div>
                 <div>
                     <p class="text-xs font-bold tracking-widest text-amber-500 uppercase">Hệ thống quản lý hành chính liên thông giả lập [WEB SERVICE]</p>
                     <h1 class="text-xl md:text-2xl font-black text-white flex items-center gap-2 tracking-wide uppercase">Cổng thông tin điện tử chính phủ</h1>
@@ -215,12 +202,10 @@ app.get('/', (req, res) => {
                 </div>
             </div>
         </div>
-
         <div class="bg-amber-500 text-black font-bold text-sm py-2 flex items-center">
             <div class="bg-red-600 text-white px-4 py-1 flex items-center gap-2 uppercase tracking-wider text-xs font-black shrink-0 h-full">Hỏa tốc khẩn sắc</div>
-            <div class="marquee-container w-full"><span id="web-marquee" class="marquee-text px-4">[🔥 ĐÀM THOẠI 2 CHIỀU]: Hệ thống đã kích hoạt luồng kết nối đối thoại liên kết trực tiếp giữa nhân dân và các bộ phòng...</span></div>
+            <div class="marquee-container w-full"><span id="web-marquee" class="marquee-text px-4">[🔥 ĐÀM THOẠI 2 CHIỀU]: Hệ thống liên thông bảo mật lõi xử lý, đồng bộ dữ liệu đàm thoại đa phương thời gian thực...</span></div>
         </div>
-
         <nav class="bg-[#0e1726] border-b border-gray-800">
             <div class="max-w-7xl mx-auto px-2 flex flex-wrap justify-between items-center">
                 <div class="flex flex-wrap text-sm font-medium">
@@ -241,7 +226,6 @@ app.get('/', (req, res) => {
             </div>
         </nav>
     </header>
-
     <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6">
         <section id="tab-news" class="tab-content block">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -255,20 +239,18 @@ app.get('/', (req, res) => {
                 </div>
             </div>
         </section>
-
         <section id="tab-id" class="tab-content hidden">
             <div class="max-w-2xl mx-auto bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-2xl">
                 <div class="text-center mb-6">
                     <h2 class="text-lg font-bold text-white uppercase flex items-center justify-center gap-2"><i class="fa-solid fa-magnifying-glass text-amber-500"></i> Trung Tâm Truy Xuất Thông Tin Định Danh Dân Sự</h2>
                 </div>
                 <div class="flex gap-2 mb-4">
-                    <input type="text" id="search-id-input" placeholder="Ví dụ: Nguyen_Manh_Hoang" class="w-full bg-[#0b111e] border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-amber-500 font-mono">
+                    <input type="text" id="search-id-input" placeholder="Nhập Họ_Tên nhân vật tra cứu..." class="w-full bg-[#0b111e] border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-amber-500 font-mono">
                     <button onclick="executeIdSearch()" class="bg-amber-500 hover:bg-amber-600 text-black font-bold px-6 rounded-lg text-xs uppercase">Truy xuất</button>
                 </div>
                 <div id="id-search-result" class="mt-4"></div>
             </div>
         </section>
-
         <section id="tab-public-admin" class="tab-content hidden">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 space-y-4">
@@ -276,7 +258,7 @@ app.get('/', (req, res) => {
                     <div class="space-y-3 text-sm">
                         <div>
                             <label class="block text-gray-400 mb-1">Tên nhân vật (Họ_Tên)</label>
-                            <input type="text" id="form-sender" placeholder="Ví dụ: Nguyen_Manh_Hoang" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white font-mono">
+                            <input type="text" id="form-sender" placeholder="Nguyen_Manh_Hoang" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white font-mono">
                         </div>
                         <div>
                             <label class="block text-gray-400 mb-1">Thể loại dịch vụ</label>
@@ -299,7 +281,7 @@ app.get('/', (req, res) => {
                     <div class="space-y-4 w-full">
                         <h3 class="text-md font-bold text-white flex items-center gap-2 uppercase border-b border-gray-800 pb-2">Kiểm tra tiến độ & Đàm thoại trực tuyến</h3>
                         <div class="flex gap-2">
-                            <input type="text" id="track-id-input" placeholder="Nhập mã đơn thư (Ví dụ: HS-4321)" class="w-full bg-[#0b111e] border border-gray-700 rounded px-3 py-2 text-white font-mono text-sm">
+                            <input type="text" id="track-id-input" placeholder="Nhập mã đơn thư hệ thống cấp (HS-XXXX)" class="w-full bg-[#0b111e] border border-gray-700 rounded px-3 py-2 text-white font-mono text-sm">
                             <button onclick="trackDocument()" class="bg-cyan-500 hover:bg-cyan-600 text-black font-bold px-4 rounded uppercase text-xs">Tra cứu</button>
                         </div>
                         <div id="track-result" class="hidden bg-gray-950 border border-gray-800 rounded-lg p-4 space-y-3"></div>
@@ -307,7 +289,6 @@ app.get('/', (req, res) => {
                 </div>
             </div>
         </section>
-
         <section id="tab-officer" class="tab-content hidden">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div class="bg-gray-900 border border-gray-800 rounded-xl p-5" id="officer-publish-block">
@@ -318,9 +299,7 @@ app.get('/', (req, res) => {
                             <label><input type="radio" name="publish-type" value="warrant" onchange="toggleFormInputs('warrant')"> Lệnh Truy Nã</label>
                         </div>
                         <div id="group-input-news" class="space-y-3">
-                            <div class="flex items-center gap-2">
-                                <input type="checkbox" id="news-marquee"> <label for="news-marquee" class="text-amber-500 font-bold">Chạy chữ khẩn cấp trên web</label>
-                            </div>
+                            <div class="flex items-center gap-2"><input type="checkbox" id="news-marquee"> <label for="news-marquee" class="text-amber-500 font-bold">Chạy chữ khẩn cấp</label></div>
                             <input type="text" id="news-title" placeholder="Tiêu đề..." class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white">
                             <textarea id="news-content" rows="3" placeholder="Nội dung điều khoản..." class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white"></textarea>
                         </div>
@@ -332,7 +311,6 @@ app.get('/', (req, res) => {
                         <button onclick="executePublish()" class="w-full bg-cyan-500 hover:bg-cyan-600 text-black font-bold py-2 rounded uppercase text-xs">Phát hành sắc lệnh</button>
                     </div>
                 </div>
-
                 <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 space-y-4">
                     <h4 class="text-sm font-bold text-white uppercase border-b border-gray-800 pb-2">Đồng bộ căn cước dân cư</h4>
                     <div class="space-y-2 text-xs">
@@ -351,7 +329,6 @@ app.get('/', (req, res) => {
                         <button onclick="executeSyncId()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-black font-bold py-2 rounded uppercase text-xs">Đồng bộ dữ liệu</button>
                     </div>
                 </div>
-
                 <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 space-y-4 flex flex-col">
                     <h4 class="text-sm font-bold text-white uppercase border-b border-gray-800 pb-2">Tiếp nhận & xử lý hồ sơ hành chính</h4>
                     <div id="officer-assigned-dept-badge" class="text-xs text-amber-400 font-bold bg-gray-950 p-2 rounded border border-gray-800 font-mono"></div>
@@ -359,7 +336,6 @@ app.get('/', (req, res) => {
                 </div>
             </div>
         </section>
-
         <section id="tab-supervisor" class="tab-content hidden">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 space-y-4">
@@ -380,18 +356,12 @@ app.get('/', (req, res) => {
                         </select>
                         <button onclick="executeCreateAccount()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2.5 rounded uppercase text-xs">Kích hoạt tài khoản</button>
                     </div>
-
                     <div class="pt-4 border-t border-gray-800">
                         <h4 class="text-xs font-bold text-amber-400 uppercase mb-2"><i class="fa-solid fa-history"></i> Nhật ký quá trình xử lý của cán bộ</h4>
-                        <select id="select-officer-history" onchange="viewOfficerHistory(this.value)" class="w-full bg-gray-950 border border-gray-700 text-white rounded p-1.5 text-xs focus:outline-none mb-2">
-                            <option value="">-- Chọn cán bộ cần kiểm xét --</option>
-                        </select>
-                        <div id="officer-history-logs" class="bg-gray-950 p-2 rounded border border-gray-800 text-[11px] font-mono max-h-[150px] overflow-y-auto text-gray-400">
-                            Vui lòng chọn cán bộ để xem lại quá trình làm việc.
-                        </div>
+                        <select id="select-officer-history" onchange="viewOfficerHistory(this.value)" class="w-full bg-gray-950 border border-gray-700 text-white rounded p-1.5 text-xs focus:outline-none mb-2"></select>
+                        <div id="officer-history-logs" class="bg-gray-950 p-2 rounded border border-gray-800 text-[11px] font-mono max-h-[150px] overflow-y-auto text-gray-400">Vui lòng chọn cán bộ để xem lại quá trình làm việc.</div>
                     </div>
                 </div>
-
                 <div class="lg:col-span-2 bg-gray-900 border border-gray-800 rounded-xl p-5 space-y-4">
                     <div class="flex justify-between items-center border-b border-gray-800 pb-2">
                         <h3 class="text-md font-bold text-purple-400 uppercase"><i class="fa-solid fa-chart-line"></i> Thống kê biểu đồ KPI hiệu suất phòng ban</h3>
@@ -404,11 +374,9 @@ app.get('/', (req, res) => {
                             </select>
                         </div>
                     </div>
-
                     <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 h-[220px] flex items-center justify-center">
                         <canvas id="kpiChart" class="w-full h-full"></canvas>
                     </div>
-
                     <div class="overflow-x-auto">
                         <table class="w-full text-left text-xs border-collapse">
                             <thead>
@@ -431,7 +399,6 @@ app.get('/', (req, res) => {
             </div>
         </section>
     </main>
-
     <div id="login-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-gray-900 border border-gray-800 w-full max-w-sm rounded-xl p-6 relative shadow-2xl">
             <h3 class="text-sm font-bold text-white uppercase text-center mb-4">Xác thực chứng thư điện tử ban ngành</h3>
@@ -442,41 +409,38 @@ app.get('/', (req, res) => {
             </div>
         </div>
     </div>
-
     <footer class="bg-[#090d16] border-t border-gray-800 py-4 text-center text-xs text-gray-500">
         <p>© 2026 CỔNG THÔNG TIN ĐIỆN TỬ CHÍNH PHỦ GIẢ LẬP - FULLSTACK WEB SERVICE</p>
     </footer>
-
     <script>
         let globalDB = {};
-        let myChartInstance = null; // Biến lưu trữ biểu đồ Chart.js
+        let myChartInstance = null;
+        let currentUserSession = null;
 
         async function refreshDataFromServer() {
-            const res = await fetch('/api/db');
-            globalDB = await res.json();
-            
-            document.getElementById('current-security-status').innerText = globalDB.securityStatus === 'SAFE' ? 'An Toàn / Bình Thường' : globalDB.securityStatus === 'WARN' ? 'Tăng Cường Cảnh Giác' : 'NGUY HIỂM / BÁO ĐỘNG ĐỎ';
-            document.getElementById('status-dot').className = \`w-3 h-3 rounded-full \${globalDB.securityStatus === 'SAFE' ? 'bg-emerald-500' : globalDB.securityStatus === 'WARN' ? 'bg-amber-500' : 'bg-red-500 animate-ping'}\`;
-            
-            renderNewsAndWarrants();
-            renderOfficerDocs();
-            renderSupervisorStats();
-            renderLogs();
-            updateOfficerSelectMenu();
-            renderChartKPI(); // Cập nhật lại biểu đồ số liệu thực tế
+            try {
+                const res = await fetch('/api/db');
+                globalDB = await res.json();
+                document.getElementById('current-security-status').innerText = globalDB.securityStatus === 'SAFE' ? 'An Toàn / Bình Thường' : globalDB.securityStatus === 'WARN' ? 'Tăng Cường Cảnh Giác' : 'NGUY HIỂM / BÁO ĐỘNG ĐỎ';
+                document.getElementById('status-dot').className = "w-3 h-3 rounded-full " + (globalDB.securityStatus === 'SAFE' ? 'bg-emerald-500' : globalDB.securityStatus === 'WARN' ? 'bg-amber-500' : 'bg-red-500 animate-ping');
+                renderNewsAndWarrants();
+                renderOfficerDocs();
+                renderSupervisorStats();
+                renderLogs();
+                updateOfficerSelectMenu();
+                renderChartKPI();
+            } catch (err) { console.error("Lỗi đồng bộ hệ thống:", err); }
         }
 
         async function processLogin() {
             const username = document.getElementById('login-username').value.trim();
             const password = document.getElementById('login-password').value.trim();
-            
             const res = await fetch('/api/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })
             });
             const data = await res.json();
-            
             if(data.success) {
                 currentUserSession = data.user;
                 alert('Xác thực chứng thư thành công!');
@@ -484,9 +448,7 @@ app.get('/', (req, res) => {
                 updateAuthUI();
                 await refreshDataFromServer();
                 switchTab('tab-news');
-            } else {
-                alert(data.message);
-            }
+            } else { alert(data.message); }
         }
 
         function updateAuthUI() {
@@ -494,18 +456,14 @@ app.get('/', (req, res) => {
             const userInfoZone = document.getElementById('logged-user-info');
             const tabOfficerBtn = document.getElementById('btn-tab-officer');
             const tabSupervisorBtn = document.getElementById('btn-tab-supervisor');
-
             if (currentUserSession) {
                 if(triggerBtn) triggerBtn.classList.add('hidden');
                 if(userInfoZone) userInfoZone.classList.remove('hidden');
-                document.getElementById('current-session-user').innerText = \`\${currentUserSession.realname} (\${currentUserSession.level})\`;
+                document.getElementById('current-session-user').innerText = currentUserSession.realname + " (" + currentUserSession.level + ")";
                 if(tabOfficerBtn) tabOfficerBtn.classList.remove('hidden');
-                
                 if (currentUserSession.username === 'admin' || currentUserSession.dept === 'QUẢN TRỊ') {
                     if(tabSupervisorBtn) tabSupervisorBtn.classList.remove('hidden');
-                } else {
-                    if(tabSupervisorBtn) tabSupervisorBtn.classList.add('hidden');
-                }
+                } else { if(tabSupervisorBtn) tabSupervisorBtn.classList.add('hidden'); }
             } else {
                 if(triggerBtn) triggerBtn.classList.remove('hidden');
                 if(userInfoZone) userInfoZone.classList.add('hidden');
@@ -519,18 +477,15 @@ app.get('/', (req, res) => {
             const dept = document.getElementById('form-dept').value;
             const content = document.getElementById('form-content').value.trim();
             if(!sender || !content) return alert('Vui lòng nhập đầy đủ thông tin!');
-            
             const randomId = 'HS-' + Math.floor(1000 + Math.random() * 9000);
             const now = new Date();
-            const timeStr = \`\${String(now.getHours()).padStart(2, '0')}:\${String(now.getMinutes()).padStart(2, '0')} 15/6/2026\`;
-
+            const timeStr = String(now.getHours()).padStart(2, '0') + ":" + String(now.getMinutes()).padStart(2, '0') + " 15/6/2026";
             await fetch('/api/public-form', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ id: randomId, sender, dept, content, time: timeStr })
             });
-            
-            alert(\`Nộp hồ sơ thành công! Mã tra cứu: \${randomId}\`);
+            alert("Nộp đơn thư thành công! Mã tra cứu: " + randomId);
             document.getElementById('form-content').value = '';
             document.getElementById('track-id-input').value = randomId;
             await refreshDataFromServer();
@@ -541,47 +496,42 @@ app.get('/', (req, res) => {
             const trackId = document.getElementById('track-id-input').value.trim();
             const resultBox = document.getElementById('track-result');
             if(!trackId || !resultBox) return;
-
             const doc = globalDB.documents.find(d => d.id === trackId);
             if(doc) {
                 resultBox.classList.remove('hidden');
-                let stampHtml = \`<div class="stamp stamp-pending">[CHỜ THẨM XÉT]</div>\`;
-                if(doc.status.includes('tiếp nhận')) stampHtml = \`<div class="stamp stamp-received">[ĐÃ TIẾP NHẬN]</div>\`;
-                if(doc.status.includes('Chấp thuận') || doc.status.includes('Phê chuẩn')) stampHtml = \`<div class="stamp stamp-approved">[ĐÃ PHÊ CHUẨN]</div>\`;
-                if(doc.status.includes('Từ chối') || doc.status.includes('Bác bỏ')) stampHtml = \`<div class="stamp stamp-rejected">[BÁC BỎ ĐƠN]</div>\`;
-                if(doc.status.includes('Khiếu nại')) stampHtml = \`<div class="stamp stamp-complained">[KHIẾU NẠI KHẨN]</div>\`;
-
+                let stampHtml = '<div class="stamp stamp-pending">[CHỜ THẨM XÉT]</div>';
+                if(doc.status.includes('tiếp nhận')) stampHtml = '<div class="stamp stamp-received">[ĐÃ TIẾP NHẬN]</div>';
+                if(doc.status.includes('Chấp thuận') || doc.status.includes('Phê chuẩn')) stampHtml = '<div class="stamp stamp-approved">[ĐÃ PHÊ CHUẨN]</div>';
+                if(doc.status.includes('Từ chối') || doc.status.includes('Bác bỏ')) stampHtml = '<div class="stamp stamp-rejected">[BÁC BỎ ĐƠN]</div>';
+                if(doc.status.includes('Khiếu nại')) stampHtml = '<div class="stamp stamp-complained">[KHIẾU NẠI KHẨN]</div>';
                 let repliesHtml = '';
                 doc.replies.forEach(r => {
-                    repliesHtml += \`<div class="bg-gray-900 border border-gray-800 p-2 rounded text-xs"><p class="text-cyan-400 font-bold">\${r.author} (\${r.role}):</p><p class="text-white italic">"\${r.text}"</p></div>\`;
+                    repliesHtml += '<div class="bg-gray-900 border border-gray-800 p-2 rounded text-xs"><p class="text-cyan-400 font-bold">' + r.author + ' (' + r.role + '):</p><p class="text-white italic">\"' + r.text + '\"</p></div>';
                 });
-
-                resultBox.innerHTML = \`
-                    <div class="border-b border-gray-800 pb-2 flex justify-between items-center text-xs">
-                        <div>
-                            <p class="font-mono text-gray-400 font-bold">Mã hồ sơ: <span class="text-cyan-400">\${doc.id}</span></p>
-                            <p class="text-purple-400 text-[11px]">Tuyến hành chính: \${doc.escalationStage}</p>
-                            <p class="text-gray-500 text-[10px]">Đánh giá: \${doc.satisfaction}</p>
-                        </div>
-                        <div>\${stampHtml}</div>
-                    </div>
-                    <p class="text-xs bg-gray-900 p-2 rounded mt-2 italic">"\${doc.content}"</p>
-                    <div class="space-y-1.5 max-h-[120px] overflow-y-auto pt-2">\${repliesHtml}</div>
-                    <div class="pt-2 border-t border-gray-800 space-y-2">
-                        <div class="flex gap-2">
-                            <input type="text" id="citizen-reply-text" placeholder="Nhập câu hỏi đàm thoại gửi cán bộ..." class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-xs text-white">
-                            <button onclick="submitCitizenReply('\${doc.id}')" class="bg-cyan-500 text-black font-bold px-3 py-1 text-xs rounded">Gửi phản hồi</button>
-                        </div>
-                        <div class="flex gap-2">
-                            <button onclick="submitEvaluation('\${doc.id}', 'Hài lòng')" class="bg-emerald-600 px-2 py-0.5 text-[10px] text-white font-bold rounded">HÀI LÒNG</button>
-                            <button onclick="submitEvaluation('\${doc.id}', 'Khiếu nại Khẩn cấp')" class="bg-amber-500 px-2 py-0.5 text-[10px] text-black font-bold rounded">KHIẾU NẠI KHẨN CẤP</button>
-                        </div>
-                    </div>
-                \`;
+                resultBox.innerHTML = '\\
+                    <div class="border-b border-gray-800 pb-2 flex justify-between items-center text-xs">\\
+                        <div>\\
+                            <p class="font-mono text-gray-400 font-bold">Mã hồ sơ: <span class="text-cyan-400">' + doc.id + '</span></p>\\
+                            <p class="text-purple-400 text-[11px]">Tuyến hành chính: ' + doc.escalationStage + '</p>\\
+                            <p class="text-gray-500 text-[10px] mt-0.5">Đánh giá: ' + doc.satisfaction + '</p>\\
+                        </div>\\
+                        <div>' + stampHtml + '</div>\\
+                    </div>\\
+                    <p class="text-xs bg-gray-900 p-2 rounded mt-2 italic">\"' + doc.content + '\"</p>\\
+                    <div class="space-y-1.5 max-h-[100px] overflow-y-auto pt-2">' + repliesHtml + '</div>\\
+                    <div class="pt-2 border-t border-gray-800 space-y-2">\\
+                        <div class="flex gap-2">\\
+                            <input type="text" id="citizen-reply-text" placeholder="Nhập tin nhắn..." class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-xs text-white">\\
+                            <button onclick="submitCitizenReply(\'' + doc.id + '\')" class="bg-cyan-500 text-black font-bold px-3 py-1 text-xs rounded">Gửi</button>\\
+                        </div>\\
+                        <div class="flex gap-2">\\
+                            <button onclick="submitEvaluation(\'' + doc.id + '\', \'Hài lòng\')" class="bg-emerald-600 px-2 py-0.5 text-[10px] text-white font-bold rounded">HÀI LÒNG</button>\\
+                            <button onclick="submitEvaluation(\'' + doc.id + '\', \'Khiếu nại Khẩn cấp\')" class="bg-amber-500 px-2 py-0.5 text-[10px] text-black font-bold rounded">KHIẾU NẠI</button>\\
+                        </div>\\
+                    </div>';
             }
         }
 
-        // ĐÀM THOẠI HAI CHIỀU - CÔNG DÂN GỬI TIN NHẮN LÊN MÁY CHỦ
         async function submitCitizenReply(id) {
             const text = document.getElementById('citizen-reply-text').value.trim();
             if(!text) return;
@@ -609,51 +559,44 @@ app.get('/', (req, res) => {
             const container = document.getElementById('officer-docs-list');
             if(!container) return;
             container.innerHTML = '';
-
             const filtered = globalDB.documents.filter(d => currentUserSession.username === 'admin' || currentUserSession.dept === 'QUẢN TRỊ' || d.dept === currentUserSession.dept || d.status === 'Khiếu nại Khẩn cấp');
-
             filtered.forEach(doc => {
                 let repliesHtml = '';
                 doc.replies.forEach(r => {
-                    repliesHtml += \`<div class="py-0.5 border-b border-gray-900 text-gray-500"><span class="text-cyan-400 font-bold">\${r.author}:</span> \${r.text}</div>\`;
+                    repliesHtml += '<div class="py-0.5 border-b border-gray-900 text-gray-500"><span class="text-cyan-400 font-bold">' + r.author + ':</span> ' + r.text + '</div>';
                 });
-
-                container.innerHTML += \`
-                    <div class="bg-gray-950 p-3 rounded border border-gray-800 space-y-2">
-                        <div class="flex justify-between font-mono text-[10px]">
-                            <span class="text-cyan-400 font-bold">\${doc.id}</span>
-                            <span class="text-amber-400 uppercase">\${doc.status}</span>
-                        </div>
-                        <p class="text-gray-300 font-medium text-xs">Người nộp: @\${doc.sender} | Tuyến: \${doc.escalationStage}</p>
-                        <p class="text-gray-400 italic bg-gray-900 p-2 rounded">"\${doc.content}"</p>
-                        
-                        <div class="bg-gray-900/60 p-2 rounded text-[11px] max-h-[80px] overflow-y-auto space-y-0.5">
-                            <p class="text-gray-500 font-bold border-b border-gray-800 pb-0.5"><i class="fa-solid fa-history"></i> Tiến trình đối thoại:</p>
-                            \${repliesHtml || '<span class="text-gray-600 italic">Chưa có hội thoại</span>'}
-                        </div>
-
-                        <div class="flex flex-wrap gap-1">
-                            <button onclick="updateDocStatus('\${doc.id}', 'Đã tiếp nhận')" class="bg-blue-600 text-white px-2 py-0.5 rounded text-[10px]">TIẾP NHẬN</button>
-                            <button onclick="updateDocStatus('\${doc.id}', 'Phê chuẩn / Chấp thuận')" class="bg-emerald-600 text-white px-2 py-0.5 rounded text-[10px]">DUYỆT</button>
-                            <button onclick="updateDocStatus('\${doc.id}', 'Bác bỏ / Từ chối đơn')" class="bg-red-600 text-white px-2 py-0.5 rounded text-[10px]">BÁC BỎ</button>
-                            <button onclick="escalateToLeader('\${doc.id}')" class="bg-purple-600 text-white px-2 py-0.5 rounded text-[10px]">TRÌNH LÃNH ĐẠO</button>
-                        </div>
-                        <div class="text-[10px] text-gray-500">
-                            Chuyển cơ quan khác:
-                            <select onchange="transferDepartment('\${doc.id}', this.value)" class="bg-gray-900 border border-gray-700 text-white text-[10px]">
-                                <option value="">-- Chọn --</option>
-                                <option value="CÔNG AN">CÔNG AN</option>
-                                <option value="QUÂN SỰ">QUÂN SỰ</option>
-                                <option value="TÒA ÁN">TÒA ÁN</option>
-                                <option value="KHO BẠC">KHO BẠC</option>
-                            </select>
-                        </div>
-                        <div class="flex gap-1">
-                            <input type="text" id="off-reply-\${doc.id}" placeholder="Nhập câu trả lời gửi lại công dân..." class="w-full bg-gray-900 text-white text-[10px] border border-gray-700 rounded px-1">
-                            <button onclick="submitOfficerReply('\${doc.id}')" class="bg-cyan-500 text-black font-bold px-2 text-[10px] rounded">Gửi</button>
-                        </div>
-                    </div>
-                \`;
+                container.innerHTML += '\\
+                    <div class="bg-gray-950 p-3 rounded border border-gray-800 space-y-2">\\
+                        <div class="flex justify-between font-mono text-[10px]">\\
+                            <span class="text-cyan-400 font-bold">' + doc.id + '</span>\\
+                            <span class="text-amber-400 uppercase">' + doc.status + '</span>\\
+                        </div>\\
+                        <p class="text-gray-300 font-medium text-xs">Người nộp: @' + doc.sender + ' | Tuyến: ' + doc.escalationStage + '</p>\\
+                        <p class="text-gray-400 italic bg-gray-900 p-2 rounded">\"' + doc.content + '\"</p>\\
+                        <div class="bg-gray-900/60 p-2 rounded text-[11px] max-h-[80px] overflow-y-auto space-y-0.5">\\
+                            ' + repliesHtml + '\\
+                        </div>\\
+                        <div class="flex flex-wrap gap-1">\\
+                            <button onclick="updateDocStatus(\'' + doc.id + '\', \'Đã tiếp nhận\')" class="bg-blue-600 text-white px-2 py-0.5 rounded text-[10px]">TIẾP NHẬN</button>\\
+                            <button onclick="updateDocStatus(\'' + doc.id + '\', \'Phê chuẩn / Chấp thuận\')" class="bg-emerald-600 text-white px-2 py-0.5 rounded text-[10px]">DUYỆT</button>\\
+                            <button onclick="updateDocStatus(\'' + doc.id + '\', \'Bác bỏ / Từ chối đơn\')" class="bg-red-600 text-white px-2 py-0.5 rounded text-[10px]">BÁC BỎ</button>\\
+                            <button onclick="escalateToLeader(\'' + doc.id + '\')" class="bg-purple-600 text-white px-2 py-0.5 rounded text-[10px]">TRÌNH LÃNH ĐẠO</button>\\
+                        </div>\\
+                        <div class="text-[10px] text-gray-500">\\
+                            Chuyển cơ quan khác:\\
+                            <select onchange="transferDepartment(\'' + doc.id + '\', this.value)" class="bg-gray-900 border border-gray-700 text-white text-[10px]">\\
+                                <option value="">-- Chọn --</option>\\
+                                <option value="CÔNG AN">CÔNG AN</option>\\
+                                <option value="QUÂN SỰ">QUÂN SỰ</option>\\
+                                <option value="TÒA ÁN">TÒA ÁN</option>\\
+                                <option value="KHO BẠC">KHO BẠC</option>\\
+                            </select>\\
+                        </div>\\
+                        <div class="flex gap-1">\\
+                            <input type="text" id="off-reply-' + doc.id + '" placeholder="Nhập câu trả lời..." class="w-full bg-gray-900 text-white text-[10px] border border-gray-700 rounded px-1">\\
+                            <button onclick="submitOfficerReply(\'' + doc.id + '\')" class="bg-cyan-500 text-black px-2 text-[10px] rounded">Gửi</button>\\
+                        </div>\\
+                    </div>';
             });
         }
 
@@ -685,16 +628,15 @@ app.get('/', (req, res) => {
             await refreshDataFromServer();
         }
 
-        // ĐÀM THOẠI HAI CHIỀU - CÁN BỘ TRẢ LỜI LẠI CHO DÂN THẤY
         async function submitOfficerReply(id) {
-            const text = document.getElementById(\`off-reply-\${id}\`).value.trim();
+            const text = document.getElementById('off-reply-' + id).value.trim();
             if(!text) return;
             await fetch('/api/document/reply', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ id, author: currentUserSession.realname, role: currentUserSession.level, text, username: currentUserSession.username })
             });
-            document.getElementById(\`off-reply-\${id}\`).value = '';
+            document.getElementById('off-reply-' + id).value = '';
             await refreshDataFromServer();
         }
 
@@ -704,13 +646,13 @@ app.get('/', (req, res) => {
             if(newsCon && globalDB.news) {
                 newsCon.innerHTML = '';
                 globalDB.news.forEach(n => {
-                    newsCon.innerHTML += \`<div class="bg-gray-900 border border-gray-800 rounded-xl p-4"><span class="bg-amber-500/10 text-amber-500 border border-amber-500/30 font-bold px-2 py-0.5 rounded text-[10px] uppercase">\${n.type}</span><h3 class="text-sm font-bold text-white mt-1">\${n.title}</h3><p class="text-gray-400 text-xs mt-1">\${n.content}</p></div>\`;
+                    newsCon.innerHTML += '<div class="bg-gray-900 border border-gray-800 rounded-xl p-4"><span class="bg-amber-500/10 text-amber-500 border border-amber-500/30 font-bold px-2 py-0.5 rounded text-[10px] uppercase">' + n.type + '</span><h3 class="text-sm font-bold text-white mt-1">' + n.title + '</h3><p class="text-gray-400 text-xs mt-1">' + n.content + '</p></div>';
                 });
             }
             if(warCon && globalDB.warrants) {
                 warCon.innerHTML = '';
                 globalDB.warrants.forEach(w => {
-                    warCon.innerHTML += \`<div class="bg-red-950/20 border border-red-900/40 rounded-xl p-3 text-xs"><p class="text-red-500 font-bold uppercase"><i class="fa-solid fa-triangle-exclamation"></i> LỆNH TRUY NÃ: @\${w.name}</p><p class="text-gray-400 mt-1">💡 Tội danh: \${w.crime} | Thưởng: \${w.bounty}</p></div>\`;
+                    warCon.innerHTML += '<div class="bg-red-950/20 border border-red-900/40 rounded-xl p-3 text-xs"><p class="text-red-500 font-bold uppercase"><i class="fa-solid fa-triangle-exclamation"></i> LỆNH TRUY NÃ: @' + w.name + '</p><p class="text-gray-400 mt-1">💡 Tội danh: ' + w.crime + ' | Thưởng: ' + w.bounty + '</p></div>';
                 });
             }
         }
@@ -721,15 +663,14 @@ app.get('/', (req, res) => {
             if(!query || !resBox || !globalDB.citizens) return;
             const c = globalDB.citizens[query];
             if(c) {
-                resBox.innerHTML = \`
-                    <div class="bg-gray-950 border-2 border-emerald-500 rounded-xl p-4 text-xs space-y-2">
-                        <div class="border-b border-gray-800 pb-1 flex justify-between font-bold text-emerald-400"><span>HỒ SƠ CÔNG DÂN CHÍNH THỨC</span><span>\${c.status}</span></div>
-                        <p>Họ tên: <span class="text-white font-bold font-mono">@\${c.name}</span> | CCCD: <span class="text-amber-500 font-bold">\ \${c.idCard}</span></p>
-                        <p>Nghề nghiệp: \${c.job} | GPLX: \${c.license} | Súng: \${c.weaponPermit}</p>
-                        <p class="text-red-400">Tiền án: \${c.record}</p>
-                    </div>
-                \`;
-            } else { resBox.innerHTML = \`<p class="text-xs text-red-400 text-center">Không tìm thấy dữ liệu.</p>\`; }
+                resBox.innerHTML = '\\
+                    <div class="bg-gray-950 border-2 border-emerald-500 rounded-xl p-4 text-xs space-y-2">\\
+                        <div class="border-b border-gray-800 pb-1 flex justify-between font-bold text-emerald-400"><span>HỒ SƠ CÔNG DÂN CHÍNH THỨC</span><span>' + c.status + '</span></div>\\
+                        <p>Họ tên: <span class="text-white font-bold font-mono">@' + c.name + '</span> | CCCD: <span class="text-amber-500 font-bold">' + c.idCard + '</span></p>\\
+                        <p>Nghề nghiệp: ' + c.job + ' | GPLX: ' + c.license + ' | Súng: ' + c.weaponPermit + '</p>\\
+                        <p class="text-red-400">Tiền án: ' + c.record + '</p>\\
+                    </div>';
+            } else { resBox.innerHTML = '<p class="text-xs text-red-400 text-center">Không tìm thấy dữ liệu.</p>'; }
         }
 
         async function executeCreateAccount() {
@@ -739,7 +680,6 @@ app.get('/', (req, res) => {
             const dept = document.getElementById('account-dept').value;
             const level = document.getElementById('account-level').value;
             if(!username || !password || !realname) return alert('Điền đủ thông tin!');
-
             await fetch('/api/account/create', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -759,9 +699,7 @@ app.get('/', (req, res) => {
             const record = document.getElementById('id-record').value.trim();
             const military = document.getElementById('id-military').value.trim();
             const money = document.getElementById('id-cash').value.trim();
-
             if(!name || !idCard) return alert('Nhập đủ thông tin!');
-
             await fetch('/api/sync-id', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -774,15 +712,13 @@ app.get('/', (req, res) => {
         async function executePublish() {
             const type = document.querySelector('input[name="publish-type"]:checked').value;
             const now = new Date();
-            const timeStr = \`\${String(now.getHours()).padStart(2, '0')}:15 15/6/2026\`;
-            
+            const timeStr = String(now.getHours()).padStart(2, '0') + ":15 15/6/2026";
             let payload = {};
             if(type === 'news') {
                 payload = { id: 'N'+Date.now(), type: document.getElementById('news-type').value, title: document.getElementById('news-title').value.trim(), content: document.getElementById('news-content').value.trim(), time: timeStr };
             } else {
                 payload = { id: 'W'+Date.now(), name: document.getElementById('warrant-name').value.trim(), crime: document.getElementById('warrant-crime').value.trim(), bounty: document.getElementById('warrant-bounty').value.trim(), time: '15/06/2026' };
             }
-
             await fetch('/api/publish', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -793,32 +729,26 @@ app.get('/', (req, res) => {
             switchTab('tab-news');
         }
 
-        // TÍNH NĂNG MỚI: RENDER BIỂU ĐỒ KPI SỐ LIỆU CHO VĂN PHÒNG CHỦ TỊCH
         function renderChartKPI() {
             if(!globalDB.accounts) return;
             const labels = [];
             const dataReceived = [];
             const dataProcessed = [];
-
             Object.keys(globalDB.accounts).forEach(k => {
                 const a = globalDB.accounts[k];
                 labels.push(a.realname);
                 dataReceived.push(a.statReceived || 0);
                 dataProcessed.push(a.statProcessed || 0);
             });
-
             const ctx = document.getElementById('kpiChart').getContext('2d');
-            
-            // Xóa biểu đồ cũ nếu đã tồn tại để tránh lỗi đè dữ liệu
             if(myChartInstance) { myChartInstance.destroy(); }
-
             myChartInstance = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: labels,
                     datasets: [
-                        { label: 'Hồ sơ đã tiếp nhận', data: dataReceived, backgroundColor: '#3b82f6', borderColor: '#2563eb', borderWidth: 1 },
-                        { label: 'Hồ sơ quyết toán / Duyệt', data: dataProcessed, backgroundColor: '#10b981', borderColor: '#059669', borderWidth: 1 }
+                        { label: 'Đã tiếp nhận', data: dataReceived, backgroundColor: '#3b82f6', border: 0 },
+                        { label: 'Đã xử lý quyết toán', data: dataProcessed, backgroundColor: '#10b981', border: 0 }
                     ]
                 },
                 options: {
@@ -833,17 +763,14 @@ app.get('/', (req, res) => {
             });
         }
 
-        // TÍNH NĂNG MỚI: CẬP NHẬT MENU CHỌN CÁN BỘ ĐỂ XEM LẠI QUÁ TRÌNH XỬ LÝ
         function updateOfficerSelectMenu() {
             const select = document.getElementById('select-officer-history');
             if(!select || !globalDB.accounts) return;
-            
             const currentSelection = select.value;
-            select.innerHTML = '<option value="">-- Chọn cán bộ cần kiểm xét --</option>';
-            
+            select.innerHTML = '<option value=\"\">-- Chọn cán bộ cần kiểm xét --</option>';
             Object.keys(globalDB.accounts).forEach(k => {
                 const a = globalDB.accounts[k];
-                select.innerHTML += \`<option value="\${a.username}">\${a.realname} (@\${a.username})</option>\`;
+                select.innerHTML += '<option value=\"' + a.username + '\">' + a.realname + ' (@' + a.username + ')</option>';
             });
             select.value = currentSelection;
         }
@@ -859,7 +786,7 @@ app.get('/', (req, res) => {
                 logBox.innerHTML = 'Cán bộ chưa thực hiện hoạt động hành chính nào.';
                 return;
             }
-            logBox.innerHTML = history.map(h => \`<p class="border-b border-gray-900 py-0.5 text-purple-400"><i class="fa-solid fa-angle-right"></i> \${h}</p>\`).join('');
+            logBox.innerHTML = history.map(h => '<p class="border-b border-gray-900 py-0.5 text-purple-400"><i class="fa-solid fa-angle-right"></i> ' + h + '</p>').join('');
         }
 
         async function updateSecurityStatus(status) {
@@ -873,7 +800,7 @@ app.get('/', (req, res) => {
             tbody.innerHTML = '';
             Object.keys(globalDB.accounts).forEach(k => {
                 const a = globalDB.accounts[k];
-                tbody.innerHTML += \`<tr class="border-b border-gray-800 text-xs"><td class="py-2 px-3 text-purple-400">@\${a.username}</td><td class="py-2 px-3 text-white">\text{\${a.realname}}</td><td class="py-2 px-3 font-bold text-amber-500">\${a.dept}</td><td class="py-2 px-3">\${a.level}</td><td class="py-2 px-3 text-center text-cyan-400">\${a.statReceived || 0}</td><td class="py-2 px-3 text-center text-emerald-400">\${a.statProcessed || 0}</td></tr>\`;
+                tbody.innerHTML += '<tr class="border-b border-gray-800 text-xs"><td class="py-2 px-3 text-purple-400">@' + a.username + '</td><td class="py-2 px-3 text-white">' + a.realname + '</td><td class="py-2 px-3 font-bold text-amber-500">' + a.dept + '</td><td class="py-2 px-3">' + a.level + '</td><td class="py-2 px-3 text-center text-cyan-400">' + (a.statReceived || 0) + '</td><td class="py-2 px-3 text-center text-emerald-400">' + (a.statProcessed || 0) + '</td></tr>';
             });
         }
 
@@ -881,7 +808,7 @@ app.get('/', (req, res) => {
             const con = document.getElementById('system-logs-container');
             if(!con || !globalDB.logs) return;
             con.innerHTML = '';
-            globalDB.logs.forEach(l => { con.innerHTML += \`<p class="text-emerald-500 py-0.5 border-b border-gray-900"><i class="fa-solid fa-angle-right text-purple-400"></i> \${l}</p>\`; });
+            globalDB.logs.forEach(l => { con.innerHTML += '<p class="text-emerald-500 py-0.5 border-b border-gray-900"><i class="fa-solid fa-angle-right text-purple-400"></i> ' + l + '</p>'; });
         }
 
         function switchTab(id) {
@@ -897,12 +824,15 @@ app.get('/', (req, res) => {
         window.addEventListener('load', () => {
             updateAuthUI();
             refreshDataFromServer();
-            setInterval(refreshDataFromServer, 3000); // Đồng bộ dữ liệu 2 chiều sau mỗi 3 giây
+            setInterval(refreshDataFromServer, 4000);
         });
     </script>
 </body>
 </html>
-    `);
+`;
+
+app.get('/', (req, res) => {
+    res.send(htmlContent);
 });
 
 app.listen(PORT, () => console.log(`Máy chủ chính phủ đang vận hành tại Port: ${PORT}`));
