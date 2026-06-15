@@ -52,7 +52,7 @@
 
         <div class="bg-amber-500 text-black font-bold text-sm py-2 flex items-center">
             <div class="bg-red-600 text-white px-4 py-1 flex items-center gap-2 uppercase tracking-wider text-xs font-black shrink-0 h-full">Hỏa tốc khẩn sắc</div>
-            <div class="marquee-container w-full"><span id="web-marquee" class="marquee-text px-4">[🔥 ĐÀM THOẠI 2 CHIỀU]: Khối văn phòng số chính phủ trực tuyến liên thông đa ban ngành đã kết nối đồng bộ...</span></div>
+            <div class="marquee-container w-full"><span id="web-marquee" class="marquee-text px-4">[🔥 ĐÀM THOẠI 2 CHIỀU]: Khối văn phòng số chính phủ trực tuyến liên thông đa ban ngành đã đồng bộ dữ liệu...</span></div>
         </div>
 
         <nav class="bg-[#0e1726] border-b border-gray-800">
@@ -96,7 +96,7 @@
                     <h2 class="text-lg font-bold text-white uppercase flex items-center justify-center gap-2"><i class="fa-solid fa-magnifying-glass text-amber-500"></i> Trung Tâm Truy Xuất Thông Tin Định Danh Dân Sự</h2>
                 </div>
                 <div class="flex gap-2 mb-4">
-                    <input type="text" id="search-id-input" placeholder="Nhập chính xác Họ_Tên nhân vật tra cứu..." class="w-full bg-[#0b111e] border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-amber-500 font-mono">
+                    <input type="text" id="search-id-input" placeholder="Nhập Họ_Tên nhân vật tra cứu..." class="w-full bg-[#0b111e] border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-amber-500 font-mono">
                     <button onclick="executeIdSearch()" class="bg-amber-500 hover:bg-amber-600 text-black font-bold px-6 rounded-lg text-xs uppercase">Truy xuất</button>
                 </div>
                 <div id="id-search-result" class="mt-4"></div>
@@ -113,13 +113,13 @@
                             <input type="text" id="form-sender" placeholder="Ví dụ: Nguyen_Manh_Hoang" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white font-mono">
                         </div>
                         <div>
-                            <label class="block text-gray-400 mb-1">Thể loại dịch vụ cơ quan</label>
+                            <label class="block text-gray-400 mb-1">Thể loại dịch vụ</label>
                             <select id="form-dept" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white">
                                 <option value="CÔNG AN">CÔNG AN - Đăng ký Thẻ Căn Cước Gắn Chíp</option>
-                                <option value="CÔNG AN">CÔNG AN - Cấp phép sở hữu vũ khí công vụ</option>
+                                <option value="CÔNG AN">CÔNG AN - Cấp phép sở hữu vũ khí</option>
                                 <option value="QUÂN SỰ">QUÂN SỰ - Đăng ký tham gia Nghĩa vụ quân sự tự nguyện</option>
                                 <option value="TÒA ÁN">TÒA ÁN - Đơn khởi kiện dân sự / Hình sự toàn quốc</option>
-                                <option value="KHO BẠC">KHO BẠC - Giao dịch điều chuyển ngân sách quốc gia</option>
+                                <option value="KHO BẠC">KHO BẠC - Giao dịch ngân sách quốc gia</option>
                             </select>
                         </div>
                         <div>
@@ -133,7 +133,7 @@
                     <div class="space-y-4 w-full">
                         <h3 class="text-md font-bold text-white flex items-center gap-2 uppercase border-b border-gray-800 pb-2">Kiểm tra tiến độ & Đàm thoại trực tuyến</h3>
                         <div class="flex gap-2">
-                            <input type="text" id="track-id-input" placeholder="Nhập mã đơn thư hệ thống cấp (HS-XXXX)" class="w-full bg-[#0b111e] border border-gray-700 rounded px-3 py-2 text-white font-mono text-sm">
+                            <input type="text" id="track-id-input" placeholder="Nhập mã đơn thư (Ví dụ: HS-4321)" class="w-full bg-[#0b111e] border border-gray-700 rounded px-3 py-2 text-white font-mono text-sm">
                             <button onclick="trackDocument()" class="bg-cyan-500 hover:bg-cyan-600 text-black font-bold px-4 rounded uppercase text-xs">Tra cứu</button>
                         </div>
                         <div id="track-result" class="hidden bg-gray-950 border border-gray-800 rounded-lg p-4 space-y-3"></div>
@@ -152,8 +152,8 @@
                             <label><input type="radio" name="publish-type" value="warrant" onchange="toggleFormInputs('warrant')"> Lệnh Truy Nã</label>
                         </div>
                         <div id="group-input-news" class="space-y-3">
-                            <div class="flex items-center gap-2"><input type="checkbox" id="news-marquee"> <label for="news-marquee" class="text-amber-500 font-bold">Chạy chữ khẩn cấp trên trang chủ</label></div>
-                            <input type="text" id="news-title" placeholder="Tiêu đề văn bản..." class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white">
+                            <div class="flex items-center gap-2"><input type="checkbox" id="news-marquee"> <label for="news-marquee" class="text-amber-500 font-bold">Chạy chữ khẩn cấp trên web</label></div>
+                            <input type="text" id="news-title" placeholder="Tiêu đề..." class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white">
                             <textarea id="news-content" rows="3" placeholder="Nội dung điều khoản..." class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white"></textarea>
                         </div>
                         <div id="group-input-warrant" class="space-y-3 hidden">
@@ -168,24 +168,24 @@
                 <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 space-y-4">
                     <h4 class="text-sm font-bold text-white uppercase border-b border-gray-800 pb-2">Đồng bộ căn cước dân cư</h4>
                     <div class="space-y-2 text-xs">
-                        <input type="text" id="id-name" placeholder="Họ_Tên nhân vật" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white font-mono">
-                        <input type="text" id="id-number" placeholder="Mã Số Định Danh Quốc Gia" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white font-mono">
+                        <input type="text" id="id-name" placeholder="Họ_Tên" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white font-mono">
+                        <input type="text" id="id-number" placeholder="Mã Số CCCD" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white font-mono">
                         <input type="text" id="id-job" placeholder="Chức vụ/Nghề nghiệp" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white">
-                        <input type="text" id="id-license" placeholder="Hạng bằng lái GPLX" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white">
-                        <input type="text" id="id-weapon-permit" placeholder="Giấy phép sở hữu vũ khí công vụ" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white">
+                        <input type="text" id="id-license" placeholder="Bằng lái GPLX" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white">
+                        <input type="text" id="id-weapon-permit" placeholder="Giấy phép súng" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white">
                         <select id="id-status" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white">
                             <option value="Diện Cư Dân Hợp Pháp">Diện Cư Dân Hợp Pháp</option>
                             <option value="Đang Bị Điều Tra Tư Pháp">Đang Bị Điều Tra Tư Pháp</option>
                         </select>
-                        <input type="text" id="id-record" placeholder="Tiền án lý lịch hình sự" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white">
-                        <input type="text" id="id-military" placeholder="Trạng thái nghĩa vụ quân sự" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white">
-                        <input type="text" id="id-cash" placeholder="Tài sản hiện kim ngân sách" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white font-mono">
-                        <button onclick="executeSyncId()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-black font-bold py-2 rounded uppercase text-xs">Đồng bộ dữ liệu cư dân</button>
+                        <input type="text" id="id-record" placeholder="Tiền án tiền sự" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white">
+                        <input type="text" id="id-military" placeholder="Nghĩa vụ quân sự" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white">
+                        <input type="text" id="id-cash" placeholder="Tài sản ví dụ: 500,000$" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white font-mono">
+                        <button onclick="executeSyncId()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-black font-bold py-2 rounded uppercase text-xs">Đồng bộ dữ liệu</button>
                     </div>
                 </div>
 
                 <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 space-y-4 flex flex-col">
-                    <h4 class="text-sm font-bold text-white uppercase border-b border-gray-800 pb-2">Tiếp nhận & xử lý hồ sơ chủ quản</h4>
+                    <h4 class="text-sm font-bold text-white uppercase border-b border-gray-800 pb-2">Tiếp nhận & xử lý hồ sơ hành chính</h4>
                     <div id="officer-assigned-dept-badge" class="text-xs text-amber-400 font-bold bg-gray-950 p-2 rounded border border-gray-800 font-mono"></div>
                     <div id="officer-docs-list" class="space-y-3 flex-grow overflow-y-auto max-h-[360px] text-xs"></div>
                 </div>
@@ -195,10 +195,10 @@
         <section id="tab-supervisor" class="tab-content hidden">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 space-y-4">
-                    <h3 class="text-md font-bold text-purple-400 uppercase border-b border-gray-800 pb-2">Cấp phát quyền tài khoản cán bộ</h3>
+                    <h3 class="text-md font-bold text-purple-400 uppercase border-b border-gray-800 pb-2">Cấp phát tài khoản cán bộ</h3>
                     <div class="space-y-3 text-xs">
-                        <input type="text" id="account-username" placeholder="Tên tài khoản cán bộ (username)" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white font-mono">
-                        <input type="password" id="account-password" placeholder="Mật mã an ninh bảo mật" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white font-mono">
+                        <input type="text" id="account-username" placeholder="Tên tài khoản (username)" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white font-mono">
+                        <input type="password" id="account-password" placeholder="Mật mã an ninh" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white font-mono">
                         <input type="text" id="account-realname" placeholder="Họ tên cán bộ thực tế" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white">
                         <select id="account-dept" class="w-full bg-[#0b111e] border border-gray-700 rounded p-2 text-white">
                             <option value="CÔNG AN">CÔNG AN</option>
@@ -210,19 +210,19 @@
                             <option value="Trực ban">Cán bộ Tiếp nhận (Trực ban)</option>
                             <option value="Lãnh đạo">Cấp bậc chỉ huy Lãnh đạo</option>
                         </select>
-                        <button onclick="executeCreateAccount()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2.5 rounded uppercase text-xs">Kích hoạt cán bộ</button>
+                        <button onclick="executeCreateAccount()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2.5 rounded uppercase text-xs">Kích hoạt tài khoản</button>
                     </div>
 
                     <div class="pt-4 border-t border-gray-800">
-                        <h4 class="text-xs font-bold text-amber-400 uppercase mb-2"><i class="fa-solid fa-history"></i> Kiểm xét lịch sử nghiệp vụ nhân viên</h4>
+                        <h4 class="text-xs font-bold text-amber-400 uppercase mb-2"><i class="fa-solid fa-history"></i> Kiểm xét quá trình xử lý của cán bộ</h4>
                         <select id="select-officer-history" onchange="viewOfficerHistory(this.value)" class="w-full bg-gray-950 border border-gray-700 text-white rounded p-1.5 text-xs focus:outline-none mb-2"></select>
-                        <div id="officer-history-logs" class="bg-gray-950 p-2 rounded border border-gray-800 text-[11px] font-mono max-h-[150px] overflow-y-auto text-gray-400">Vui lòng chọn nhân sự để quét log làm việc.</div>
+                        <div id="officer-history-logs" class="bg-gray-950 p-2 rounded border border-gray-800 text-[11px] font-mono max-h-[150px] overflow-y-auto text-gray-400">Vui lòng chọn cán bộ để xem lại quá trình làm việc.</div>
                     </div>
                 </div>
 
                 <div class="lg:col-span-2 bg-gray-900 border border-gray-800 rounded-xl p-5 space-y-4">
                     <div class="flex justify-between items-center border-b border-gray-800 pb-2">
-                        <h3 class="text-md font-bold text-purple-400 uppercase"><i class="fa-solid fa-chart-line"></i> Biểu đồ KPI hiệu suất phòng ban ngành</h3>
+                        <h3 class="text-md font-bold text-purple-400 uppercase"><i class="fa-solid fa-chart-line"></i> Thống kê biểu đồ hiệu suất phòng ban ngành</h3>
                         <div class="flex items-center gap-2 text-xs">
                             <span class="text-gray-400">An ninh quốc gia:</span>
                             <select id="config-security-select" onchange="updateSecurityStatus(this.value)" class="bg-gray-950 border border-gray-700 rounded px-2 py-0.5 text-white">
@@ -245,8 +245,8 @@
                                     <th class="py-2 px-3">Họ Tên Cán Bộ</th>
                                     <th class="py-2 px-3">Cơ Quan</th>
                                     <th class="py-2 px-3">Cấp Bậc</th>
-                                    <th class="py-2 px-3 text-center">Đã Tiếp Nhận</th>
-                                    <th class="py-2 px-3 text-center">Đã Quyết Toán</th>
+                                    <th class="py-2 px-3 text-center">Đã Nhận</th>
+                                    <th class="py-2 px-3 text-center">Đã Duyệt</th>
                                 </tr>
                             </thead>
                             <tbody id="supervisor-stats-table-body" class="divide-y divide-gray-800 font-mono text-gray-300"></tbody>
@@ -264,15 +264,15 @@
         <div class="bg-gray-900 border border-gray-800 w-full max-w-sm rounded-xl p-6 relative shadow-2xl">
             <h3 class="text-sm font-bold text-white uppercase text-center mb-4">Xác thực chứng thư điện tử ban ngành</h3>
             <div class="space-y-3 text-xs">
-                <input type="text" id="login-username" placeholder="Mã định danh cán bộ..." class="w-full bg-[#0b111e] border border-gray-700 rounded p-2.5 text-white font-mono">
-                <input type="password" id="login-password" placeholder="Mật mã bảo mật an ninh..." class="w-full bg-[#0b111e] border border-gray-700 rounded p-2.5 text-white font-mono">
-                <button onclick="processLogin()" class="w-full bg-amber-500 hover:bg-amber-600 text-black font-black py-2.5 rounded uppercase text-xs">Xác thực chứng thư</button>
+                <input type="text" id="login-username" placeholder="Mã tài khoản..." class="w-full bg-[#0b111e] border border-gray-700 rounded p-2.5 text-white font-mono">
+                <input type="password" id="login-password" placeholder="Mật mã bảo mật..." class="w-full bg-[#0b111e] border border-gray-700 rounded p-2.5 text-white font-mono">
+                <button onclick="processLogin()" class="w-full bg-amber-500 hover:bg-amber-600 text-black font-black py-2.5 rounded uppercase text-xs">Xác thực</button>
             </div>
         </div>
     </div>
 
     <footer class="bg-[#090d16] border-t border-gray-800 py-4 text-center text-xs text-gray-500">
-        <p>© 2026 CỔNG THÔNG TIN ĐIỆN TỬ CHÍNH PHỦ GIẢ LẬP - WEB SERVICE CORE SYSTEM</p>
+        <p>© 2026 CỔNG THÔNG TIN ĐIỆN TỬ CHÍNH PHỦ GIẢ LẬP - FULLSTACK WEB SERVICE</p>
     </footer>
 
     <script>
@@ -299,20 +299,24 @@
         async function processLogin() {
             const username = document.getElementById('login-username').value.trim();
             const password = document.getElementById('login-password').value.trim();
+            
             const res = await fetch('/api/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })
             });
             const data = await res.json();
+            
             if(data.success) {
                 currentUserSession = data.user;
-                alert('Xác thực chứng thư công vụ thành công!');
+                alert('Xác thực chứng thư thành công!');
                 closeLoginModal();
                 updateAuthUI();
                 await refreshDataFromServer();
                 switchTab('tab-news');
-            } else { alert(data.message); }
+            } else {
+                alert(data.message);
+            }
         }
 
         function updateAuthUI() {
@@ -329,7 +333,9 @@
                 
                 if (currentUserSession.username === 'admin' || currentUserSession.dept === 'QUẢN TRỊ') {
                     if(tabSupervisorBtn) tabSupervisorBtn.classList.remove('hidden');
-                } else { if(tabSupervisorBtn) tabSupervisorBtn.classList.add('hidden'); }
+                } else {
+                    if(tabSupervisorBtn) tabSupervisorBtn.classList.add('hidden');
+                }
             } else {
                 if(triggerBtn) triggerBtn.classList.remove('hidden');
                 if(userInfoZone) userInfoZone.classList.add('hidden');
@@ -354,7 +360,7 @@
                 body: JSON.stringify({ id: randomId, sender, dept, content, time: timeStr })
             });
             
-            alert("Nộp đơn thư thành công! Mã tra cứu kiểm xét: " + randomId);
+            alert("Nộp đơn thư thành công! Mã tra cứu: " + randomId);
             document.getElementById('form-content').value = '';
             document.getElementById('track-id-input').value = randomId;
             await refreshDataFromServer();
@@ -384,25 +390,23 @@
                     <div class="border-b border-gray-800 pb-2 flex justify-between items-center text-xs">
                         <div>
                             <p class="font-mono text-gray-400 font-bold">Mã hồ sơ: <span class="text-cyan-400">${doc.id}</span></p>
-                            <p class="text-purple-400 text-[11px]">Tuyến hành chính liên thông: ${doc.escalationStage}</p>
-                            <p class="text-gray-500 text-[10px] mt-0.5">Ý kiến phản hồi công dân: <span class="text-amber-400 font-black">${doc.satisfaction}</span></p>
+                            <p class="text-purple-400 text-[11px]">Tuyến hành chính: ${doc.escalationStage}</p>
+                            <p class="text-gray-500 text-[10px]">Đánh giá: ${doc.satisfaction}</p>
                         </div>
                         <div>${stampHtml}</div>
                     </div>
-                    <p class="text-xs bg-gray-900 p-2.5 rounded mt-2 italic leading-relaxed border border-gray-800">"${doc.content}"</p>
+                    <p class="text-xs bg-gray-900 p-2 rounded mt-2 italic">"${doc.content}"</p>
                     <div class="space-y-1.5 max-h-[100px] overflow-y-auto pt-2">${repliesHtml}</div>
                     <div class="pt-2 border-t border-gray-800 space-y-2">
                         <div class="flex gap-2">
-                            <input type="text" id="citizen-reply-text" placeholder="Nhập văn bản đối thoại với trực ban..." class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-xs text-white focus:outline-none">
-                            <button onclick="submitCitizenReply('${doc.id}')" class="bg-cyan-500 text-black font-bold px-3 py-1 text-xs rounded shrink-0">Gửi phản hồi</button>
+                            <input type="text" id="citizen-reply-text" placeholder="Nhập tin nhắn..." class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-xs text-white">
+                            <button onclick="submitCitizenReply('${doc.id}')" class="bg-cyan-500 text-black font-bold px-3 py-1 text-xs rounded">Gửi</button>
                         </div>
                         <div class="flex gap-2">
-                            <button onclick="submitEvaluation('${doc.id}', 'Hài lòng')" class="bg-emerald-600 px-3 py-1 text-[11px] text-white font-bold rounded uppercase tracking-wide"><i class="fa-solid fa-thumbs-up"></i> Hài Lòng</button>
-                            <button onclick="submitEvaluation('${doc.id}', 'Khiếu nại Khẩn cấp')" class="bg-amber-500 px-3 py-1 text-[11px] text-black font-bold rounded uppercase tracking-wide"><i class="fa-solid fa-triangle-exclamation"></i> Gửi Khiếu Nại Khẩn</button>
+                            <button onclick="submitEvaluation('${doc.id}', 'Hài lòng')" class="bg-emerald-600 px-2 py-0.5 text-[10px] text-white font-bold rounded">HÀI LÒNG</button>
+                            <button onclick="submitEvaluation('${doc.id}', 'Khiếu nại Khẩn cấp')" class="bg-amber-500 px-2 py-0.5 text-[10px] text-black font-bold rounded">KHIẾU NẠI</button>
                         </div>
                     </div>`;
-            } else {
-                resultBox.innerHTML = '<p class="text-xs text-red-400 text-center font-bold">Hồ sơ hành chính không hiện hữu trên hệ thống.</p>';
             }
         }
 
@@ -439,43 +443,39 @@
             filtered.forEach(doc => {
                 let repliesHtml = '';
                 doc.replies.forEach(r => {
-                    repliesHtml += '<div class="py-0.5 border-b border-gray-900/60 text-gray-400 font-mono"><span class="text-cyan-400 font-bold">' + r.author + ':</span> ' + r.text + '</div>';
+                    repliesHtml += '<div class="py-0.5 border-b border-gray-900 text-gray-500"><span class="text-cyan-400 font-bold">' + r.author + ':</span> ' + r.text + '</div>';
                 });
 
                 container.innerHTML += `
                     <div class="bg-gray-950 p-3 rounded border border-gray-800 space-y-2">
                         <div class="flex justify-between font-mono text-[10px]">
-                            <span class="text-cyan-400 font-bold">${doc.id} [${doc.dept}]</span>
+                            <span class="text-cyan-400 font-bold">${doc.id}</span>
                             <span class="text-amber-400 uppercase">${doc.status}</span>
                         </div>
-                        <p class="text-gray-300 font-medium text-[11px]">Chủ đơn thư: @${doc.sender} | Tuyến: ${doc.escalationStage}</p>
-                        <p class="text-[10px] text-pink-400 font-bold">Đánh giá của dân: ${doc.satisfaction}</p>
+                        <p class="text-gray-300 font-medium text-xs">Người nộp: @${doc.sender} | Tuyến: ${doc.escalationStage}</p>
                         <p class="text-gray-400 italic bg-gray-900 p-2 rounded">"${doc.content}"</p>
-                        
-                        <div class="bg-gray-900/60 p-2 rounded text-[10px] max-h-[80px] overflow-y-auto space-y-0.5">
-                            <p class="text-gray-500 font-bold border-b border-gray-800 pb-0.5"><i class="fa-solid fa-history"></i> Luồng đối thoại 2 chiều:</p>
-                            ${repliesHtml || '<span class="text-gray-600 italic">Chưa phát sinh đàm thoại</span>'}
+                        <div class="bg-gray-900/60 p-2 rounded text-[11px] max-h-[80px] overflow-y-auto space-y-0.5">
+                            ${repliesHtml}
                         </div>
-
                         <div class="flex flex-wrap gap-1">
-                            <button onclick="updateDocStatus('${doc.id}', 'Đã tiếp nhận')" class="bg-blue-600 text-white px-2 py-0.5 rounded text-[10px] uppercase font-bold">Tiếp Nhận</button>
-                            <button onclick="updateDocStatus('${doc.id}', 'Phê chuẩn / Chấp thuận')" class="bg-emerald-600 text-white px-2 py-0.5 rounded text-[10px] uppercase font-bold">Phê Duyệt</button>
-                            <button onclick="updateDocStatus('${doc.id}', 'Bác bỏ / Từ chối đơn')" class="bg-red-600 text-white px-2 py-0.5 rounded text-[10px] uppercase font-bold">Bác Bỏ</button>
-                            <button onclick="escalateToLeader('${doc.id}')" class="bg-purple-600 text-white px-2 py-0.5 rounded text-[10px] uppercase font-bold">Trình Lãnh Đạo</button>
+                            <button onclick="updateDocStatus('${doc.id}', 'Đã tiếp nhận')" class="bg-blue-600 text-white px-2 py-0.5 rounded text-[10px]">TIẾP NHẬN</button>
+                            <button onclick="updateDocStatus('${doc.id}', 'Phê chuẩn / Chấp thuận')" class="bg-emerald-600 text-white px-2 py-0.5 rounded text-[10px]">DUYỆT</button>
+                            <button onclick="updateDocStatus('${doc.id}', 'Bác bỏ / Từ chối đơn')" class="bg-red-600 text-white px-2 py-0.5 rounded text-[10px]">BÁC BỎ</button>
+                            <button onclick="escalateToLeader('${doc.id}')" class="bg-purple-600 text-white px-2 py-0.5 rounded text-[10px]">TRÌNH LÃNH ĐẠO</button>
                         </div>
                         <div class="text-[10px] text-gray-500">
-                            Điều phối liên ngành:
-                            <select onchange="transferDepartment('${doc.id}', this.value)" class="bg-gray-900 border border-gray-700 text-white text-[10px] rounded px-1">
-                                <option value="">-- Chọn đơn vị nhận --</option>
+                            Chuyển cơ quan khác:
+                            <select onchange="transferDepartment('${doc.id}', this.value)" class="bg-gray-900 border border-gray-700 text-white text-[10px]">
+                                <option value="">-- Chọn --</option>
                                 <option value="CÔNG AN">CÔNG AN</option>
                                 <option value="QUÂN SỰ">QUÂN SỰ</option>
                                 <option value="TÒA ÁN">TÒA ÁN</option>
                                 <option value="KHO BẠC">KHO BẠC</option>
                             </select>
                         </div>
-                        <div class="flex gap-1 pt-1 border-t border-gray-900/50">
-                            <input type="text" id="off-reply-${doc.id}" placeholder="Chỉ đạo trực ban, ghi chú phản hồi..." class="w-full bg-gray-900 text-white text-[10px] border border-gray-700 rounded px-1.5 focus:outline-none">
-                            <button onclick="submitOfficerReply('${doc.id}')" class="bg-cyan-500 text-black font-black px-2 text-[10px] rounded">Gửi</button>
+                        <div class="flex gap-1">
+                            <input type="text" id="off-reply-${doc.id}" placeholder="Nhập câu trả lời..." class="w-full bg-gray-900 text-white text-[10px] border border-gray-700 rounded px-1">
+                            <button onclick="submitOfficerReply('${doc.id}')" class="bg-cyan-500 text-black px-2 text-[10px] rounded">Gửi</button>
                         </div>
                     </div>`;
             });
@@ -551,7 +551,7 @@
                         <p>Nghề nghiệp: ${c.job} | GPLX: ${c.license} | Vũ khí: ${c.weaponPermit}</p>
                         <p class="text-red-400">Hồ sơ tư pháp: ${c.record}</p>
                     </div>`;
-            } else { resBox.innerHTML = '<p class="text-xs text-red-400 text-center">Hồ sơ định danh không hiện hữu trên hệ thống.</p>'; }
+            } else { resBox.innerHTML = '<p class="text-xs text-red-400 text-center">Hồ sơ định danh không hiện hữu trên cụm cơ sở dữ liệu.</p>'; }
         }
 
         async function executeCreateAccount() {
@@ -564,9 +564,9 @@
             await fetch('/api/account/create', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, accountData: { username, password, realname, dept, level, statReceived: 0, statProcessed: 0, actionHistory: ['[15/06/2026] Tài khoản đặc quyền công vụ phục vụ nghiệp vụ kích hoạt thành công.'] } })
+                body: JSON.stringify({ username, accountData: { username, password, realname, dept, level, statReceived: 0, statProcessed: 0, actionHistory: ['[15/06/2026] Tài khoản đặc quyền công vụ kích hoạt thành công.'] } })
             });
-            alert('Cấp phát và phân quyền cán bộ thành công!');
+            alert('Cấp phát và định danh tài khoản công vụ thành công!');
             await refreshDataFromServer();
         }
 
@@ -580,13 +580,13 @@
             const record = document.getElementById('id-record').value.trim();
             const military = document.getElementById('id-military').value.trim();
             const money = document.getElementById('id-cash').value.trim();
-            if(!name || !idCard) return alert('Họ tên và mã số căn cước bắt buộc điền đầy đủ!');
+            if(!name || !idCard) return alert('Họ tên định danh và mã số căn cước không được rỗng!');
             await fetch('/api/sync-id', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name, username: currentUserSession.username, citizenData: { name, idCard, job, license, weaponPermit, status, record, military, money } })
             });
-            alert('Đồng bộ dữ liệu số hóa cư dân hoàn tất!');
+            alert('Đồng bộ hệ thống dữ liệu số hóa dân cư hoàn tất!');
             await refreshDataFromServer();
         }
 
@@ -605,7 +605,7 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ type, username: currentUserSession.username, data: payload })
             });
-            alert('Ký ban hành thông cáo thành công!');
+            alert('Ký phê duyệt ban hành văn bản thành công!');
             await refreshDataFromServer();
             switchTab('tab-news');
         }
@@ -628,8 +628,8 @@
                 data: {
                     labels: labels,
                     datasets: [
-                        { label: 'Hồ sơ đã nhận xử lý', data: dataReceived, backgroundColor: '#3b82f6', border: 0 },
-                        { label: 'Hồ sơ quyết toán / Duyệt', data: dataProcessed, backgroundColor: '#10b981', border: 0 }
+                        { label: 'Đã tiếp nhận', data: dataReceived, backgroundColor: '#3b82f6', border: 0 },
+                        { label: 'Đã xử lý quyết toán', data: dataProcessed, backgroundColor: '#10b981', border: 0 }
                     ]
                 },
                 options: {
@@ -664,7 +664,7 @@
             }
             const history = globalDB.accounts[username].actionHistory || [];
             if(history.length === 0) {
-                logBox.innerHTML = 'Cán bộ chưa phát sinh tiến trình xử lý nghiệp vụ nào.';
+                logBox.innerHTML = 'Cán bộ chưa thực hiện hoạt động hành chính nào.';
                 return;
             }
             logBox.innerHTML = history.map(h => '<p class="border-b border-gray-900 py-0.5 text-purple-400"><i class="fa-solid fa-angle-right text-[10px]"></i> ' + h + '</p>').join('');
