@@ -4,11 +4,9 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-
-// Cho phép truy cập các file tĩnh ở thư mục gốc (để gọi file index.html)
 app.use(express.static(__dirname));
 
-// ================= HỆ THỐNG CƠ SỞ DỮ LIỆU TẬP TRUNG TRÊN SERVER =================
+// ================= HỆ THỐNG CƠ SỞ DỮ LIỆU TẬP TRUNG TRÊN RAM SERVER =================
 let db = {
     news: [
         { id: 'N1', type: 'QUYẾT ĐỊNH', title: 'Chính thức vận hành Cổng thông tin điện tử hành chính liên thông', content: 'Ban hành quy chế phối hợp liên ngành số hóa quốc gia diện Web Service tập trung.', time: '15/06/2026, 08:00:00' }
@@ -157,9 +155,8 @@ app.post('/api/security/update', (req, res) => {
     res.json({ success: true });
 });
 
-// Giao diện chính hiển thị khi vào đường dẫn URL gốc
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(PORT, () => console.log(`Máy chủ chính phủ đang vận hành ổn định tại Port: ${PORT}`));
+app.listen(PORT, () => console.log(`Máy chủ đang vận hành ổn định tại Port: ${PORT}`));
