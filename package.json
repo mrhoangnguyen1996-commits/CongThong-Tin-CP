@@ -1,0 +1,12 @@
+{
+  "name": "government-portal-service",
+  "version": "1.0.0",
+  "description": "Cổng thông tin điện tử chính phủ giả lập Web Service",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
