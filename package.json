@@ -1,7 +1,7 @@
 {
   "name": "government-portal-webservice",
   "version": "1.0.0",
-  "description": "Cổng thông tin điện tử chính phủ giả lập liên thông Fullstack",
+  "description": "Congs thong tin dien tu chinh phu gia lap Fullstack",
   "main": "server.js",
   "engines": {
     "node": ">=18.0.0"
