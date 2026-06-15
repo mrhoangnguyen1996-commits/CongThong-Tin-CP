@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static(__dirname));
 
-// ================= HỆ THỐNG CƠ SỞ DỮ LIỆU TẬP TRUNG TRÊN RAM SERVER =================
+// ================= CƠ SỞ DỮ LIỆU TRÊN RAM MÁY CHỦ =================
 let db = {
     news: [
         { id: 'N1', type: 'QUYẾT ĐỊNH', title: 'Chính thức vận hành Cổng thông tin điện tử hành chính liên thông', content: 'Ban hành quy chế phối hợp liên ngành số hóa quốc gia diện Web Service tập trung.', time: '15/06/2026, 08:00:00' }
@@ -27,7 +27,7 @@ let db = {
     securityStatus: 'SAFE'
 };
 
-// ================= CÁC API ENDPOINTS LOGIC HỆ THỐNG =================
+// ================= CÁC API ENDPOINTS NGHIỆP VỤ =================
 app.get('/api/db', (req, res) => res.json(db));
 
 app.post('/api/login', (req, res) => {
@@ -155,8 +155,9 @@ app.post('/api/security/update', (req, res) => {
     res.json({ success: true });
 });
 
+// Trả về giao diện index.html tách biệt khi người dùng truy cập link web
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(PORT, () => console.log(`Máy chủ đang vận hành ổn định tại Port: ${PORT}`));
+app.listen(PORT, () => console.log(`May chu dang van hanh tai Port: ${PORT}`));
