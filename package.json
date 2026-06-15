@@ -1,7 +1,7 @@
 {
   "name": "government-portal-webservice",
   "version": "1.0.0",
-  "description": "Cong thong tin dien tu chinh phu gia lap",
+  "description": "Cong thong tin dien tu chinh phu gia lap liên thông Web Service",
   "main": "server.js",
   "engines": {
     "node": ">=18.0.0"
